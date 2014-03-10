@@ -35,3 +35,8 @@ Profile.renderData = function(response) {
 Handlebars.registerHelper('fullName', function() {
   return this.firstName + ' ' + this.lastName;
 });
+
+Handlebars.registerHelper('fullDate', function() {
+	var months = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+	return months[this.startDate.month]
+})
