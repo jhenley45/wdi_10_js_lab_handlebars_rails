@@ -1,6 +1,4 @@
 {{#with data}}
-
-
 <div class="wrapper">
   <div id="main" class="profile grid-a">
     <div id="content" class="resume hresume">
@@ -121,27 +119,36 @@
         </div>
         <div class="content vcalendar">
           {{#each positions.values}}
-            <div class="position first experience vevent vcard current-position">
-              <a class="include" href="#name"></a>
-              <div class="postitle">
-                <h3 class="position-title anet"><span class="title">{{title}}</span></h3>
-                <h4><strong><a class="company-profile-public" href="#"><span class="org summary">{{company.name}}</span></a></strong></h4>
-              </div>
-              <p class="orgstats organization-details">
-                {{company.type}}; {{company.industry}} Industry
-              </p>
-              <p class="period">
-                <abbr class="dtstart" title="2011-04-01">
-                  {{fullDate}} {{startDate.year}}
-                </abbr>
-                &#8211;
-                <abbr class="dtstamp" title="2011-04-18">
-                  Present: {{isCurrent}}
-                </abbr>
-              </p>
-              <p class="desc">
-                {{summary}}
-              </p>
+            {{#if isCurrent}}
+              <div class="position first experience vevent vcard current-position">
+            {{else}}
+              <div class="position first experience vevent vcard">
+            {{/if}}
+                <a class="include" href="#name"></a>
+                <div class="postitle">
+                  <h3 class="position-title anet"><span class="title">{{title}}</span></h3>
+                  <h4><strong><a class="company-profile-public" href="#"><span class="org summary">{{company.name}}</span></a></strong></h4>
+                </div>
+                <p class="orgstats organization-details">
+                  {{company.type}}; {{company.industry}} Industry
+                </p>
+                <p class="period">
+                  <abbr class="dtstart" title={{jobStart}}>
+                    {{fullDate startDate}}
+                  </abbr>
+                  &#8211;
+                  {{#if isCurrent}}
+                    <abbr class="dtstamp" title="2011-04-18">
+                      Present
+                    </abbr>
+                  {{else}}
+                    <abbr class="dtend" title={{jobEnd}}>
+                    {{fullDate endDate}}
+                  {{/if}}
+                </p>
+                <p class="desc">
+                  {{summary}}
+                </p>
             </div>
           {{/each}}
         </div>

@@ -36,7 +36,15 @@ Handlebars.registerHelper('fullName', function() {
   return this.firstName + ' ' + this.lastName;
 });
 
-Handlebars.registerHelper('fullDate', function() {
+Handlebars.registerHelper('fullDate', function(date) {
 	var months = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-	return months[this.startDate.month]
+	return months[date.month - 1] + ' ' + date.year;
+})
+
+Handlebars.registerHelper('jobStart', function() {
+	return '"' + this.startDate.year + '-' + this.startDate.month + '-' + '01"'
+})
+
+Handlebars.registerHelper('jobEnd', function() {
+	return '"' + this.endDate.year + '-' + this.endDate.month + '-' + '01"'
 })
