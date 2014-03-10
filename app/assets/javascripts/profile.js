@@ -2,17 +2,6 @@ var Profile = Profile || {};
 
 $(function(){
 	Profile.getData();
-	$('body').append(
-		HandlebarsTemplates['profile']({
-			greeting: 'Hello',
-			people: [
-				{ firstName: 'Jack', lastName: 'Henley'},
-				{ firstName: 'Alex', lastName: 'Grant'},
-				{ firstName: 'David', lastName: 'Fisher'}
-			]
-		})
-	);
-
 });
 
 Profile.getData = function(){
@@ -25,6 +14,8 @@ Profile.getData = function(){
 	.done(function(data) {
 		console.log("success");
 		response = data;
+
+		Profile.renderData(response);
 	})
 
 	.fail(function() {
@@ -32,3 +23,11 @@ Profile.getData = function(){
 	})
 
 };
+
+Profile.renderData = function(response) {
+	$('body').append(
+		HandlebarsTemplates['profile']({
+			data: response
+		})
+	);
+}
