@@ -31,3 +31,7 @@ Profile.renderData = function(response) {
 		})
 	);
 }
+
+Handlebars.registerHelper('fullName', function() {
+  return this.firstName + ' ' + this.lastName;
+});
